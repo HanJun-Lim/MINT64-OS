@@ -1,0 +1,18 @@
+ Dim W As New WinHttp.WinHttpRequest
+
+Private Sub Command1_Click()
+
+W.Open "POST", "https://nid.naver.com/nidlogin.login"
+W.SetRequestHeader "User-Agent", "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko"
+W.SetRequestHeader "Referer", "https://nid.naver.com/nidlogin.login?url=http://section.cafe.naver.com"
+W.SetRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+W.SetRequestHeader "Connection", "Keep-Alive"
+        W.Send ("enctp=1&encpw=-1&encnm=&svctype=-1&svc=&viewtype=&locale=ko_KR&postDataKey=&smart_LEVEL=1&logintp=&url=http%3A%2F%2Fsection.cafe.naver.com&localechange=&pre_id=&resp=&exp=&ru=&id=" & txtID & "&pw=" & txtPW)
+        If (InStr(W.ResponseText, "11")) Then
+            MsgBox ("로그인 성공")
+        Else
+            MsgBox ("로그인 실패")
+        End If
+
+End Sub
+
